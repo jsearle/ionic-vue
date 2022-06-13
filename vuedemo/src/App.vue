@@ -1,15 +1,22 @@
 <template>
-  <MiComponente />
+  <ShoppingList :usuario="usuario" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MiComponente from './components/MiComponente.vue';
+//import MiComponente from './components/MiComponente.vue';
+import ShoppingList from './components/ShoppingList.vue';
+
 
 export default defineComponent({
   name: 'App',
+  data(){
+    return {
+      usuario: 'Juan Searle'
+    }
+  },
   components: {
-    MiComponente
+    ShoppingList
   }
 });
 </script>
@@ -19,7 +26,7 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   margin-top: 60px;
 }
