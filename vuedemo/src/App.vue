@@ -1,4 +1,8 @@
 <template>
+  <FullComponent :texto="usuario" :numero="13" @modificar-padre="cambioDato"/>
+  <hr />
+  {{usuario}}
+  <hr />
   <ShoppingList :usuario="usuario" />
 </template>
 
@@ -6,6 +10,7 @@
 import { defineComponent } from 'vue';
 //import MiComponente from './components/MiComponente.vue';
 import ShoppingList from './components/ShoppingList.vue';
+import FullComponent from './components/FullComponent.vue';
 
 
 export default defineComponent({
@@ -15,8 +20,14 @@ export default defineComponent({
       usuario: 'Juan Searle'
     }
   },
+  methods:{
+    cambioDato(nuevoNombre: string){
+      this.usuario = nuevoNombre
+    }
+  },
   components: {
-    ShoppingList
+    ShoppingList,
+    FullComponent
   }
 });
 </script>
