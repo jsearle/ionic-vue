@@ -93,7 +93,7 @@
               </ion-label>
           </ion-item>
             <ion-item-sliding>
-          <ion-item>
+            <ion-item button @click="router.push({path:'/second'})" >
             
               <ion-avatar slot="start">
               <img alt="Fruta" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Fruit_Stall_in_Barcelona_Market.jpg/360px-Fruit_Stall_in_Barcelona_Market.jpg" />
@@ -200,6 +200,7 @@ import {
   IonItemOption
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+import {useRouter} from "vue-router";
 
 export default defineComponent({
   name: "HomePage",
@@ -237,6 +238,12 @@ export default defineComponent({
       alert("Hola mundo");
     },
   },
+  setup(){
+    const router = useRouter();
+    return {
+      router
+    }
+  }
 });
 </script>
 

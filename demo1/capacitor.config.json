@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "demo1",
+	"appId": "es.fullcircle.demo1",
+	"appName": "Demo 1",
 	"webDir": "dist",
 	"bundledWebRuntime": false
 }
