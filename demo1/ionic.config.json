@@ -1,7 +1,8 @@
 {
-  "name": "demo1",
+  "name": "Demo 1",
   "integrations": {
     "capacitor": {}
   },
-  "type": "vue"
+  "type": "vue",
+  "id": "es.fullcircle.demo1"
 }
