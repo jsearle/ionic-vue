@@ -45,7 +45,7 @@
       <ion-toast
         :is-open="avisoAbierto"
         message="Notificación recibida!"
-        position="top"
+        :position="miPosicion"
         :duration="2000"
         @didDismiss="avisoAbierto = false"
       >
@@ -72,7 +72,7 @@ import {
   IonLabel,
   IonActionSheet,
   alertController,
-    IonToast
+  IonToast
 } from "@ionic/vue";
 import { alertCircle } from "ionicons/icons";
 
@@ -99,6 +99,7 @@ export default defineComponent({
     return {
       alertaAbierta: false,
       avisoAbierto: false,
+      miPosicion: 'top',
       buttons: [
         { text: "Opción 1", role: "destructive" },
         { text: "Opción 2" },
