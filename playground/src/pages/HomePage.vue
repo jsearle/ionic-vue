@@ -83,6 +83,21 @@
 
         <ion-list>
           <ion-list-header> Lista de la compra </ion-list-header>
+          <ion-item-sliding>
+            <ion-item>
+              <ion-label>
+                Este elemento es deslizable
+              </ion-label>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option color="primary">
+                Uno
+              </ion-item-option>
+              <ion-item-option color="secondary">
+                Dos
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
           <ion-item v-for="(producto, index) in listaCompra" :key="index">
             <ion-avatar slot="start">
               <img
@@ -107,10 +122,15 @@
                 <h2>Producto con gesto</h2>
                 <p>Estos son los detalles</p>
               </ion-label>
-              <ion-item-options>
-                <ion-item-option color="danger"> Borrar </ion-item-option>
-              </ion-item-options>
             </ion-item>
+            <ion-item-options>
+              <ion-item-option color="danger">
+                Borrar
+              </ion-item-option>
+              <ion-item-option color="secondary">
+                Archivar
+              </ion-item-option>
+            </ion-item-options>
           </ion-item-sliding>
           <ion-item>
             <ion-grid class="sin-borde">
