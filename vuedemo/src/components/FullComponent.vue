@@ -14,10 +14,11 @@
   <input type="text" v-model="nombre" />
   <button @click="modificarPadre">Modificar padre</button>
   <button @click="cambioProfundo">Botón pulsado</button>
+  <p @click="() => appData.setEdad(40)">appData: {{appData}}</p>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, ref, reactive, inject } from 'vue'
 import { useMouse } from '../composables/mouse'
 
 export default defineComponent({
@@ -108,6 +109,7 @@ export default defineComponent({
       a:1,
       b:2
     })
+    const appData = inject('appData')
 
     // setters para compartir el método de modificación del ref
     const setTexto2 = (nuevoTexto:string) => {
@@ -118,7 +120,8 @@ export default defineComponent({
     return {
       texto2,
       setTexto2,
-      mouse
+      mouse,
+      appData
     }
   }
 })

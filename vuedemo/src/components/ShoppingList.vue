@@ -22,12 +22,13 @@
       <div @mousemove="raton">
         texto
       </div>
+      Edad: {{ (appData?appData.edad:'') }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 
 export default defineComponent({
   name:'ShoppingList',
@@ -68,6 +69,12 @@ export default defineComponent({
     },
     mayusculas(){
       return this.miUsuario.toUpperCase()
+    }
+  },
+  setup(){
+    const appData = inject('appData');
+    return {
+      appData
     }
   }
 })

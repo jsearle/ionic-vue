@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, provide } from 'vue';
 //import MiComponente from './components/MiComponente.vue';
 import ShoppingList from './components/ShoppingList.vue';
 import FullComponent from './components/FullComponent.vue';
@@ -28,6 +28,19 @@ export default defineComponent({
   components: {
     ShoppingList,
     FullComponent
+  },
+  setup(){
+    const usuario = ref('Juan Searle')
+    const edad = ref(45)
+    const setEdad = (newEdad: number) => {
+      edad.value = newEdad
+    }
+
+    provide('appData', {
+      usuario,
+      edad,
+      setEdad
+    })
   }
 });
 </script>
