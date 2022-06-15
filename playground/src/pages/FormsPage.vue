@@ -95,7 +95,7 @@ import {
 } from "@ionic/vue";
 
 export default defineComponent({
-  name: "Tab1Page",
+  name: "FormsPage",
   components: {
     IonHeader,
     IonToolbar,

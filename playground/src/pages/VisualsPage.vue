@@ -60,7 +60,33 @@
         <ion-item>
           <ion-spinner name="crescent"></ion-spinner>
         </ion-item>
+        <ion-item>
+          <ion-button @click="abrirModal">Abrir modal</ion-button>
+        </ion-item>
       </ion-list>
+
+      <ion-modal
+        :is-open="modalAbierta"
+        :breakpoints="[0.3, 1]"
+        :initialBreakpoint="0.3"
+        :can-dismiss="true"
+        :show-backdrop="true"
+      >
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="end">
+              <ion-button @click="cerrarModal">Cerrar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-item>
+            <ion-label>Este es el contenido de la modal</ion-label>
+          </ion-item>
+        </ion-content>
+      </ion-modal>
+
+
     </ion-content>
   </ion-page>
 </template>
@@ -85,6 +111,7 @@ import {
   IonSpinner,
   IonButtons,
   IonBackButton,
+  IonModal
 } from "@ionic/vue";
 
 export default defineComponent({
@@ -107,10 +134,12 @@ export default defineComponent({
     IonSpinner,
     IonButtons,
     IonBackButton,
+    IonModal
   },
   data() {
     return {
       cargando: false,
+      modalAbierta: false
     };
   },
   methods: {
@@ -120,6 +149,12 @@ export default defineComponent({
         this.cargando = false;
       }, 3000);
     },
+    abrirModal(){
+      this.modalAbierta = true;
+    },
+    cerrarModal(){
+      this.modalAbierta = false;
+    }
   },
 });
 </script>

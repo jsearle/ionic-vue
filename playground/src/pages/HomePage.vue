@@ -22,7 +22,7 @@
                 >Pulsa aquí</ion-button
               >
               <ion-button @click="alerta">Pulsa aquí</ion-button>
-              <ion-button @click="alerta" size="large">Pulsa aquí</ion-button>
+              <ion-button @click="alerta" size="large" class="custom-button">Grande</ion-button>
             </p>
             <p>
               <ion-button @click="alerta" expand="block" color="success"
@@ -312,5 +312,8 @@ ion-item ion-col h4 {
   overflow: hidden;
   overflow-y: scroll;
   max-height: 400px;
+}
+.custom-button{
+  --background: #ff0000;
 }
 </style>

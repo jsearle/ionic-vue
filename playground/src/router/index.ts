@@ -4,6 +4,7 @@ import HomePage from '../pages/HomePage.vue';
 import FormsPage from '../pages/FormsPage.vue';
 import VisualsPage from '../pages/VisualsPage.vue';
 import OthersPage from '../pages/OthersPage.vue';
+import StoragePage from '../pages/StoragePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,6 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/others',
     name: 'Others',
     component: OthersPage
+  },
+  {
+    path: '/storage',
+    name: 'Storage',
+    component: StoragePage
   }
 ]
 

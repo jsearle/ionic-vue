@@ -2,6 +2,11 @@
   <ion-app>
     <ion-split-pane content-id="main-content">
       <ion-menu content-id="main-content" type="overlay">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>{{storage.datos.dato1}}</ion-title>
+          </ion-toolbar>
+        </ion-header>
         <ion-content>
           <ion-list id="inbox-list">
             <ion-list-header>Inbox</ion-list-header>
@@ -35,6 +40,7 @@ import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader,
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { useStorage } from './composables/storage'
 
 export default defineComponent({
   name: 'App',
@@ -54,6 +60,7 @@ export default defineComponent({
   },
   setup() {
     const selectedIndex = ref(0);
+    const storage = useStorage();
     const appPages = [
       {
         title: 'Home',
@@ -76,6 +83,12 @@ export default defineComponent({
       {
         title: 'Others',
         url: '/others',
+        iosIcon: archiveOutline,
+        mdIcon: archiveSharp
+      },
+      {
+        title: 'Storage',
+        url: '/storage',
         iosIcon: archiveOutline,
         mdIcon: archiveSharp
       }
@@ -107,7 +120,8 @@ export default defineComponent({
       trashSharp, 
       warningOutline, 
       warningSharp,
-      isSelected: (url: string) => url === route.path ? 'selected' : ''
+      isSelected: (url: string) => url === route.path ? 'selected' : '',
+      storage
     }
   }
 });
