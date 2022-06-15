@@ -39,7 +39,7 @@
 import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { globeOutline, archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import { useStorage } from './composables/storage'
 
 export default defineComponent({
@@ -91,6 +91,12 @@ export default defineComponent({
         url: '/storage',
         iosIcon: archiveOutline,
         mdIcon: archiveSharp
+      },
+      {
+        title: 'APIs',
+        url: '/api',
+        iosIcon: globeOutline,
+        mdIcon: globeOutline
       }
     ];
     const labels = ['Uno', 'Dos', 'Tres'];
