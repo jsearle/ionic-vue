@@ -3,7 +3,8 @@ import {reactive, onMounted} from 'vue'
 
 const datos = reactive({
   dato1:'',
-  dato2:''
+  dato2:'',
+  token: ''
 })
 
 export function useStorage(){
@@ -23,11 +24,17 @@ export function useStorage(){
     }, 1000)
   }
 
+  const setToken = async (newToken:string) => {
+    const res = await Storage.set({ key: "token", value: newToken });
+    datos.token = newToken
+  }
+
   onMounted(getDatos)
 
   return{
     datos,
     setDatos,
-    getDatos
+    getDatos,
+    setToken
   }
 }
