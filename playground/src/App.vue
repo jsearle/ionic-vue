@@ -37,10 +37,11 @@
 
 <script lang="ts">
 import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, getCurrentInstance } from 'vue';
 import { useRoute } from 'vue-router';
 import { globeOutline, archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import { useStorage } from './composables/storage'
+import { useSQLite } from 'vue-sqlite-hook'
 
 export default defineComponent({
   name: 'App',
@@ -97,6 +98,12 @@ export default defineComponent({
         url: '/api',
         iosIcon: globeOutline,
         mdIcon: globeOutline
+      },
+      {
+        title: 'Bases de datos SQLite',
+        url: '/database',
+        iosIcon: globeOutline,
+        mdIcon: globeOutline
       }
     ];
     const labels = ['Uno', 'Dos', 'Tres'];
@@ -107,7 +114,13 @@ export default defineComponent({
     }
     
     const route = useRoute();
-    
+
+    const app = getCurrentInstance();
+    if(app!= null){
+      app.appContext.config.globalProperties.$sqlite = useSQLite();
+    }
+
+
     return { 
       selectedIndex,
       appPages, 

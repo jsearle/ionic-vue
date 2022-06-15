@@ -6,6 +6,7 @@ import VisualsPage from '../pages/VisualsPage.vue';
 import OthersPage from '../pages/OthersPage.vue';
 import StoragePage from '../pages/StoragePage.vue';
 import ApiPage from '../pages/ApiPage.vue';
+import DatabasePage from '../pages/DatabasePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -41,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/api',
     name: 'Api',
     component: ApiPage
+  },
+  {
+    path: '/database',
+    name: 'Database',
+    component: DatabasePage
   }
 ]
 
