@@ -1,4 +1,6 @@
 import { Camera, Photo, CameraResultType, CameraSource  } from '@capacitor/camera';
+import {Filesystem, Directory } from '@capacitor/filesystem';
+import {Capacitor} from '@capacitor/core';
 
 export function useCamera(){
 
@@ -12,7 +14,20 @@ export function useCamera(){
     return photo
   }
 
-  
+  const saveToDisk = async (photo: Photo) => {
+    const decoded = await readAsBase64(photo)
+    const newName = 'mifoto.jpg'
+    const savedFile = await Filesystem.writeFile({
+      path: newName,
+      data: decoded,
+      directory: Directory.Data
+    })
+    return savedFile
+  }
+
+  const getWebUrl = (file: string) => {
+    return Capacitor.convertFileSrc(file)
+  }
 
 
   const readAsBase64 = async(photo: Photo) => {
@@ -34,6 +49,8 @@ export function useCamera(){
 
 
   return {
-    takePhoto
+    takePhoto,
+    saveToDisk,
+    getWebUrl
   }
 }

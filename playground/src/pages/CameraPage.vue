@@ -14,8 +14,12 @@
         </ion-item>
       </ion-list>
       <ion-button expand="block" @click="takePhoto">Toma una foto</ion-button>
-      <ion-card v-if="photoUrl != ''">
+      <ion-card v-if="photoUrl != ''" class="ion-padding">
         <img :src="photoUrl" alt="">
+      </ion-card>
+      <ion-card class="ion-padding">
+        <img v-if="platform == 'android'" :src="cam.getWebUrl('file:///data/user/0/io.ionic.starter/files/mifoto.jpg')"/>
+        <p v-else>La previsualización de archivos previos no se encuentra disponible</p>
       </ion-card>
     </ion-content>
   </ion-page>
@@ -37,6 +41,7 @@ import {
   IonCard
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+import { Capacitor } from "@capacitor/core";
 import { useCamera } from "../composables/camera";
 import {  Photo  } from '@capacitor/camera';
 
@@ -67,13 +72,17 @@ export default defineComponent({
       console.log(result);
       if (result.webPath){
         this.photoUrl = result.webPath;
+        const saveResult = await this.cam.saveToDisk(result)
+        console.log("Guadada:", saveResult)
       }
     }
   },
   setup() {
+    const platform = Capacitor.getPlatform();
     const cam = useCamera()
     return {
-      cam
+      cam,
+      platform
     };
   },
 });
