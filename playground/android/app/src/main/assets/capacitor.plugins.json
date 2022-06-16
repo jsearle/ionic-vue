@@ -38,5 +38,9 @@
 	{
 		"pkg": "@capacitor/storage",
 		"classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+	},
+	{
+		"pkg": "demo-plugin",
+		"classpath": "es.fullcircle.demoplugin.DemoPluginPlugin"
 	}
 ]
