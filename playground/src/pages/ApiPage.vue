@@ -25,8 +25,8 @@
       </ion-list>
       <ion-card>
         <ion-card-content>
-          <p>Información del Composable useAPI: {{ API.usersData }}</p>
-          <p>Cargando: {{ API.isLoadingData }}</p>
+          <p><strong>Cargando:</strong> {{ API.isLoadingData }}</p>
+          <p><strong>Información del Composable useAPI:</strong> {{ API.usersData }}</p>
           <ion-button @click="loadAPIUsers">Cargar via useAPI</ion-button>
         </ion-card-content>
       </ion-card>
@@ -40,6 +40,11 @@
           <ion-item>
             <ion-label>Password:</ion-label>
             <ion-input type="password" v-model="userPassword"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="medium">*La clave es: cityslicka</ion-text>
+            </ion-label>
           </ion-item>
 
           <p>User token: {{ API.userToken }}</p>
@@ -65,9 +70,13 @@ import {
   IonItem,
   IonImg,
   IonAvatar,
-  IonLabel, IonCardContent, IonCard,
-  IonInput
+  IonLabel,
+  IonCardContent,
+  IonCard,
+  IonText,
+  IonInput,
 } from "@ionic/vue";
+import {useStorage} from '../composables/storage'
 
 export default defineComponent({
   name: "ApisPage",
@@ -84,55 +93,62 @@ export default defineComponent({
     IonItem,
     IonImg,
     IonAvatar,
-    IonLabel, IonCardContent, IonCard,
-    IonInput
+    IonLabel,
+    IonCardContent,
+    IonCard,
+    IonText,
+    IonInput,
   },
   data() {
     return {
       users: [] as any[],
-      userPassword:'',
-      userEmail: 'eve.holt@reqres.in'
+      userPassword: "",
+      userEmail: "eve.holt@reqres.in",
     };
   },
   methods: {
     async getUsers() {
       // https://reqres.in/api/users
-      const results = await fetch("https://reqres.in/api/users").then(
-        (response) => {
-          try{
-            const res = response.json()
-            return res
-          }catch(e){
-            console.log(e)
-            return []
+      const results = await fetch("https://reqres.in/api/users")
+        .then((response) => {
+          try {
+            const res = response.json();
+            return res;
+          } catch (e) {
+            console.log(e);
+            return [];
           }
-        }
-      ).catch((error) => {
-        console.error(error);
-        return []
-      });
+        })
+        .catch((error) => {
+          console.error(error);
+          return [];
+        });
       //console.log(results);
       this.users = results.data;
     },
-    loadAPIUsers(){
-      this.API.fetchUsers()
+    loadAPIUsers() {
+      this.API.fetchUsers();
     },
-    login(){
-      this.API.doLogin(this.userEmail, this.userPassword)
-    }
+    async login() {
+      const token = await this.API.doLogin(this.userEmail, this.userPassword);
+      this.storage.setToken(token);
+    },
   },
-  watch:{
-    'API.usersData.users': {
-      handler(newValue){
-        this.users = newValue
-      }
-    }
+  watch: {
+    "API.usersData.users": {
+      handler(newValue) {
+        this.users = newValue;
+      },
+    },
   },
-  setup(){
-    const API = useAPI()
+  setup() {
+
+    const storage = useStorage()
+    const API = useAPI();
     return {
-      API
-    }
-  }
+      API,
+      storage
+    };
+  },
 });
 </script>

@@ -5,13 +5,13 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Tab 1</ion-title>
+        <ion-title>Formularios</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
+          <ion-title size="large">Formularios</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-list>

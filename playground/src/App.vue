@@ -21,7 +21,7 @@
           </ion-list>
   
           <ion-list id="labels-list">
-            <ion-list-header>Labels</ion-list-header>
+            <ion-list-header>Etiquetas</ion-list-header>
   
             <ion-item v-for="(label, index) in labels" lines="none" :key="index">
               <ion-icon slot="start" :ios="bookmarkOutline" :md="bookmarkSharp"></ion-icon>
@@ -64,25 +64,25 @@ export default defineComponent({
     const storage = useStorage();
     const appPages = [
       {
-        title: 'Home',
+        title: 'Inicio',
         url: '/home',
         iosIcon: home,
         mdIcon: home
       },
       {
-        title: 'Forms',
+        title: 'Formularios',
         url: '/forms',
         iosIcon: create,
         mdIcon: create
       },
       {
-        title: 'Visuals',
+        title: 'Visuales',
         url: '/visuals',
         iosIcon: heartOutline,
         mdIcon: heartSharp
       },
       {
-        title: 'Others',
+        title: 'Alertas',
         url: '/others',
         iosIcon: chatbox,
         mdIcon: chatbox

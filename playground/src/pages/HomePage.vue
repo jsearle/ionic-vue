@@ -111,7 +111,7 @@
             </ion-label>
           </ion-item>
           <ion-item-sliding>
-            <ion-item button @click="router.push({ path: '/visuals' })">
+            <ion-item button @click="router.push({ path: '/visuals' })" color="light">
               <ion-avatar slot="start">
                 <img
                   alt="Fruta"

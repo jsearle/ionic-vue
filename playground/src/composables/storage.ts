@@ -13,6 +13,7 @@ export function useStorage(){
     datos.dato2 = newDato2
     Storage.set({ key: "dato1", value: newDato1 });
     Storage.set({ key: "dato2", value: newDato2 });
+    console.log('storage actualizado')
   }
 
   const getDatos = async () => {
@@ -27,6 +28,7 @@ export function useStorage(){
   const setToken = async (newToken:string) => {
     await Storage.set({ key: "token", value: newToken });
     datos.token = newToken
+    console.log('token guardado en el storage')
   }
 
   onMounted(getDatos)

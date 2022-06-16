@@ -1,7 +1,7 @@
 import {reactive, ref} from 'vue'
-import {useStorage} from './storage'
 
 const userToken = ref('')
+
 
 export function useAPI(){
   const isLoadingData = ref(false)
@@ -39,9 +39,7 @@ export function useAPI(){
     }).then(response => response.json());
     console.log(loginResult)
     userToken.value = loginResult.token
-    isLoadingData.value = false
-    const storage = useStorage()
-    storage.setToken(loginResult.token)
+    return loginResult.token
   }
 
   return {
