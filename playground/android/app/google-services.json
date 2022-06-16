@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "151707943424",
+    "project_id": "imaginaplayground",
+    "storage_bucket": "imaginaplayground.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151707943424:android:828f56ea20e1ec67e40ee5",
+        "android_client_info": {
+          "package_name": "es.fullcircle.es"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151707943424-d5drtk58rvjhd7lcei34po7f9c27i69e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF99BoDr4YhWXt6FSVIfZL6VgqxVPASkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151707943424-d5drtk58rvjhd7lcei34po7f9c27i69e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

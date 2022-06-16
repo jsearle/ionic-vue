@@ -16,6 +16,10 @@
         <ion-item>
           <ion-label>Native: {{ native }}</ion-label>
         </ion-item>
+        <ion-item>
+          <ion-label>Permisos notificaciones</ion-label>
+          <ion-button @click="push.registerNotifications">Permisos</ion-button>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-page>
@@ -32,10 +36,12 @@ import {
   IonToolbar,
   IonTitle,
   IonButtons,
-  IonMenuButton
+  IonMenuButton,
+  IonButton
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Capacitor } from "@capacitor/core";
+import {usePushNotifications} from "../composables/push";
 
 export default defineComponent({
   name: "CapacitorPage",
@@ -49,15 +55,18 @@ export default defineComponent({
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonMenuButton
+    IonMenuButton,
+    IonButton
   },
   setup() {
     console.log("setup");
     const platform = Capacitor.getPlatform();
     const native = Capacitor.isNativePlatform();
+    const push = usePushNotifications();
     return {
       platform,
       native,
+      push
     };
   },
 });
