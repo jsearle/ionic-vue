@@ -177,6 +177,12 @@ export default defineComponent({
         iosIcon: camera,
         mdIcon: camera,
       },
+      {
+        title: "Geolocalicación",
+        url: "/geo",
+        iosIcon: globe,
+        mdIcon: globe,
+      },
     ];
     const labels = ["Uno", "Dos", "Tres"];
     defineCustomElements(window);
