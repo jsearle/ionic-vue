@@ -94,7 +94,8 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
-  camera
+  camera,
+  repeat
 } from "ionicons/icons";
 import { useStorage } from "./composables/storage";
 import { useSQLite } from "vue-sqlite-hook";
@@ -182,6 +183,12 @@ export default defineComponent({
         url: "/geo",
         iosIcon: globe,
         mdIcon: globe,
+      },
+      {
+        title: "Motion API",
+        url: "/motion",
+        iosIcon: repeat,
+        mdIcon: repeat,
       },
     ];
     const labels = ["Uno", "Dos", "Tres"];
