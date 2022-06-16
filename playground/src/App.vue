@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
+import { IonHeader, IonToolbar, IonTitle, IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
 import { defineComponent, ref, getCurrentInstance } from 'vue';
 import { useRoute } from 'vue-router';
 import { globeOutline, archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
@@ -46,7 +46,7 @@ import { useSQLite } from 'vue-sqlite-hook'
 export default defineComponent({
   name: 'App',
   components: {
-    IonApp, 
+    IonHeader, IonToolbar, IonTitle, IonApp, 
     IonContent, 
     IonIcon, 
     IonItem, 
