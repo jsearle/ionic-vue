@@ -30,6 +30,7 @@ export function usePushNotifications() {
     console.log('Notificaciones...');
 // exl5mJopSoOWGiW18I05EL:APA91bFyyhGZCJB0OxGJ10yxXGhITAW_vLz6T_BSi149d_N-aduhOeWmHAk7THcMN_1LndLKcVEvvCFhTUkmZjZ3cT6ktKPyCInqPqvJFFYgNECQWXaUf-YcisncFqisJ5Z6NaLLQ-Lc
 // exl5mJopSoOWGiW18I05EL:APA91bFyyhGZCJB0OxGJ10yxXGhITAW_vLz6T_BSi149d_N-aduhOeWmHAk7THcMN_1LndLKcVEvvCFhTUkmZjZ3cT6ktKPyCInqPqvJFFYgNECQWXaUf-YcisncFqisJ5Z6NaLLQ-Lc
+// ep6lRuC-S4KroJ6LSq6W2y:APA91bEkAmAaAvYGtrGb7RkNPxOxJB3g2BqbbOEDs9c56bgnAx-ly8ahDi6WbDdHUIwLuwYi4HeyTfx3EiKo9tYejpTOVQcbA2gioRtu_Wu79Nle0xZs229t81YLiv7m1Efx_Zt39Zgl
 
     console.log('Permisos...');
     let permStatus = await PushNotifications.checkPermissions();
