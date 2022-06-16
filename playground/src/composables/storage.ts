@@ -25,7 +25,7 @@ export function useStorage(){
   }
 
   const setToken = async (newToken:string) => {
-    const res = await Storage.set({ key: "token", value: newToken });
+    await Storage.set({ key: "token", value: newToken });
     datos.token = newToken
   }
 
