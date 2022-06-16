@@ -72,7 +72,7 @@ export default defineComponent({
       console.log(result);
       if (result.webPath){
         this.photoUrl = result.webPath;
-        const saveResult = await this.cam.saveToDisk(result)
+        const saveResult = await this.cam.saveToDisk(result, 'mifoto.jpg');
         console.log("Guadada:", saveResult)
       }
     }

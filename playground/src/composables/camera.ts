@@ -14,9 +14,9 @@ export function useCamera(){
     return photo
   }
 
-  const saveToDisk = async (photo: Photo) => {
+  const saveToDisk = async (photo: Photo, name:string) => {
     const decoded = await readAsBase64(photo)
-    const newName = 'mifoto.jpg'
+    const newName = name
     const savedFile = await Filesystem.writeFile({
       path: newName,
       data: decoded,
