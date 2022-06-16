@@ -190,6 +190,12 @@ export default defineComponent({
         iosIcon: repeat,
         mdIcon: repeat,
       },
+      {
+        title: "Mapas",
+        url: "/maps",
+        iosIcon: globe,
+        mdIcon: globe,
+      },
     ];
     const labels = ["Uno", "Dos", "Tres"];
     defineCustomElements(window);

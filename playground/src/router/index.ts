@@ -11,6 +11,7 @@ import CapacitorPage from '../pages/CapacitorPage.vue';
 import CameraPage from '../pages/CameraPage.vue';
 import GeolocationPage from '../pages/GeolocationPage.vue';
 import MotionPage from '../pages/MotionPage.vue';
+import MapsPage from '../pages/MapsPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -71,6 +72,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/motion',
     name: 'MotionPage',
     component: MotionPage
+  },
+  {
+    path: '/maps',
+    name: 'MapsPage',
+    component: MapsPage
   },
   
   
