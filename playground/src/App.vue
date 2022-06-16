@@ -4,13 +4,13 @@
       <ion-menu content-id="main-content" type="overlay">
         <ion-header>
           <ion-toolbar>
-            <ion-title>{{storage.datos.dato1}}</ion-title>
+            <ion-title>Menú</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Inbox</ion-list-header>
-            <ion-note>hi@ionicframework.com</ion-note>
+            <ion-list-header>{{storage.datos.dato1}}</ion-list-header>
+            <ion-note>{{storage.datos.dato2}} (desde storage)</ion-note>
   
             <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -39,7 +39,7 @@
 import { IonHeader, IonToolbar, IonTitle, IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
 import { defineComponent, ref, getCurrentInstance } from 'vue';
 import { useRoute } from 'vue-router';
-import { globeOutline, archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { globe, server, archiveSharp, chatbox, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, home, create, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import { useStorage } from './composables/storage'
 import { useSQLite } from 'vue-sqlite-hook'
 
@@ -66,14 +66,14 @@ export default defineComponent({
       {
         title: 'Home',
         url: '/home',
-        iosIcon: mailOutline,
-        mdIcon: mailSharp
+        iosIcon: home,
+        mdIcon: home
       },
       {
         title: 'Forms',
         url: '/forms',
-        iosIcon: paperPlaneOutline,
-        mdIcon: paperPlaneSharp
+        iosIcon: create,
+        mdIcon: create
       },
       {
         title: 'Visuals',
@@ -84,26 +84,26 @@ export default defineComponent({
       {
         title: 'Others',
         url: '/others',
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp
+        iosIcon: chatbox,
+        mdIcon: chatbox
       },
       {
         title: 'Storage',
         url: '/storage',
-        iosIcon: archiveOutline,
+        iosIcon: archiveSharp,
         mdIcon: archiveSharp
       },
       {
         title: 'APIs',
         url: '/api',
-        iosIcon: globeOutline,
-        mdIcon: globeOutline
+        iosIcon: globe,
+        mdIcon: globe
       },
       {
         title: 'Bases de datos SQLite',
         url: '/database',
-        iosIcon: globeOutline,
-        mdIcon: globeOutline
+        iosIcon: server,
+        mdIcon: server
       }
     ];
     const labels = ['Uno', 'Dos', 'Tres'];
@@ -125,20 +125,18 @@ export default defineComponent({
       selectedIndex,
       appPages, 
       labels,
-      archiveOutline, 
       archiveSharp, 
       bookmarkOutline, 
       bookmarkSharp, 
       heartOutline, 
       heartSharp, 
-      mailOutline, 
-      mailSharp, 
-      paperPlaneOutline, 
-      paperPlaneSharp, 
       trashOutline, 
       trashSharp, 
       warningOutline, 
       warningSharp,
+      globe,
+      chatbox,
+      server,
       isSelected: (url: string) => url === route.path ? 'selected' : '',
       storage
     }
