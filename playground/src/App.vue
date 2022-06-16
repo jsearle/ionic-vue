@@ -9,22 +9,46 @@
         </ion-header>
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>{{storage.datos.dato1}}</ion-list-header>
-            <ion-note>{{storage.datos.dato2}} (desde storage)</ion-note>
-  
-            <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
-              <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
-                <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+            <ion-list-header>{{ storage.datos.dato1 }}</ion-list-header>
+            <ion-note>{{ storage.datos.dato2 }} (desde storage)</ion-note>
+
+            <ion-menu-toggle
+              auto-hide="false"
+              v-for="(p, i) in appPages"
+              :key="i"
+            >
+              <ion-item
+                @click="selectedIndex = i"
+                router-direction="root"
+                :router-link="p.url"
+                lines="none"
+                detail="false"
+                class="hydrated"
+                :class="{ selected: selectedIndex === i }"
+              >
+                <ion-icon
+                  slot="start"
+                  :ios="p.iosIcon"
+                  :md="p.mdIcon"
+                ></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
-  
+
           <ion-list id="labels-list">
             <ion-list-header>Etiquetas</ion-list-header>
-  
-            <ion-item v-for="(label, index) in labels" lines="none" :key="index">
-              <ion-icon slot="start" :ios="bookmarkOutline" :md="bookmarkSharp"></ion-icon>
+
+            <ion-item
+              v-for="(label, index) in labels"
+              lines="none"
+              :key="index"
+            >
+              <ion-icon
+                slot="start"
+                :ios="bookmarkOutline"
+                :md="bookmarkSharp"
+              ></ion-icon>
               <ion-label>{{ label }}</ion-label>
             </ion-item>
           </ion-list>
@@ -36,27 +60,63 @@
 </template>
 
 <script lang="ts">
-import { IonHeader, IonToolbar, IonTitle, IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
-import { defineComponent, ref, getCurrentInstance } from 'vue';
-import { useRoute } from 'vue-router';
-import { globe, server, archiveSharp, chatbox, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, home, create, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
-import { useStorage } from './composables/storage'
-import { useSQLite } from 'vue-sqlite-hook'
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonApp,
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonMenu,
+  IonMenuToggle,
+  IonNote,
+  IonRouterOutlet,
+  IonSplitPane,
+} from "@ionic/vue";
+import { defineComponent, ref, getCurrentInstance } from "vue";
+import { useRoute } from "vue-router";
+import {
+  globe,
+  server,
+  archiveSharp,
+  chatbox,
+  bookmarkOutline,
+  bookmarkSharp,
+  heartOutline,
+  heartSharp,
+  home,
+  create,
+  trashOutline,
+  trashSharp,
+  warningOutline,
+  warningSharp,
+  camera
+} from "ionicons/icons";
+import { useStorage } from "./composables/storage";
+import { useSQLite } from "vue-sqlite-hook";
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    IonHeader, IonToolbar, IonTitle, IonApp, 
-    IonContent, 
-    IonIcon, 
-    IonItem, 
-    IonLabel, 
-    IonList, 
-    IonListHeader, 
-    IonMenu, 
-    IonMenuToggle, 
-    IonNote, 
-    IonRouterOutlet, 
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonApp,
+    IonContent,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonListHeader,
+    IonMenu,
+    IonMenuToggle,
+    IonNote,
+    IonRouterOutlet,
     IonSplitPane,
   },
   setup() {
@@ -64,83 +124,96 @@ export default defineComponent({
     const storage = useStorage();
     const appPages = [
       {
-        title: 'Inicio',
-        url: '/home',
+        title: "Inicio",
+        url: "/home",
         iosIcon: home,
-        mdIcon: home
+        mdIcon: home,
       },
       {
-        title: 'Formularios',
-        url: '/forms',
+        title: "Formularios",
+        url: "/forms",
         iosIcon: create,
-        mdIcon: create
+        mdIcon: create,
       },
       {
-        title: 'Visuales',
-        url: '/visuals',
+        title: "Visuales",
+        url: "/visuals",
         iosIcon: heartOutline,
-        mdIcon: heartSharp
+        mdIcon: heartSharp,
       },
       {
-        title: 'Alertas',
-        url: '/others',
+        title: "Alertas",
+        url: "/others",
         iosIcon: chatbox,
-        mdIcon: chatbox
+        mdIcon: chatbox,
       },
       {
-        title: 'Storage',
-        url: '/storage',
+        title: "Storage",
+        url: "/storage",
         iosIcon: archiveSharp,
-        mdIcon: archiveSharp
+        mdIcon: archiveSharp,
       },
       {
-        title: 'APIs',
-        url: '/api',
+        title: "APIs",
+        url: "/api",
         iosIcon: globe,
-        mdIcon: globe
+        mdIcon: globe,
       },
       {
-        title: 'Bases de datos SQLite',
-        url: '/database',
+        title: "Bases de datos SQLite",
+        url: "/database",
         iosIcon: server,
-        mdIcon: server
-      }
+        mdIcon: server,
+      },
+      {
+        title: "Capacitor",
+        url: "/capacitor",
+        iosIcon: server,
+        mdIcon: server,
+      },
+      {
+        title: "Cámara",
+        url: "/camera",
+        iosIcon: camera,
+        mdIcon: camera,
+      },
     ];
-    const labels = ['Uno', 'Dos', 'Tres'];
-    
-    const path = window.location.pathname.split('/').slice(-1)[0] 
+    const labels = ["Uno", "Dos", "Tres"];
+    defineCustomElements(window);
+    const path = window.location.pathname.split("/").slice(-1)[0];
     if (path !== undefined) {
-      selectedIndex.value = appPages.findIndex(page => page.url === '/'+path);
+      selectedIndex.value = appPages.findIndex(
+        (page) => page.url === "/" + path
+      );
     }
-    
+
     const route = useRoute();
 
     const app = getCurrentInstance();
-    if(app!= null){
+    if (app != null) {
       app.appContext.config.globalProperties.$sqlite = useSQLite();
     }
 
-
-    return { 
+    return {
       selectedIndex,
-      appPages, 
+      appPages,
       labels,
-      archiveSharp, 
-      bookmarkOutline, 
-      bookmarkSharp, 
-      heartOutline, 
-      heartSharp, 
-      trashOutline, 
-      trashSharp, 
-      warningOutline, 
+      archiveSharp,
+      bookmarkOutline,
+      bookmarkSharp,
+      heartOutline,
+      heartSharp,
+      trashOutline,
+      trashSharp,
+      warningOutline,
       warningSharp,
       globe,
       chatbox,
       server,
-      isSelected: (url: string) => url === route.path ? 'selected' : '',
-      storage
-    }
-  }
+      isSelected: (url: string) => (url === route.path ? "selected" : ""),
+      storage,
+    };
+  },
 });
 </script>
 

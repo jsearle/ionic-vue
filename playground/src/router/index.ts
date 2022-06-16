@@ -7,6 +7,8 @@ import OthersPage from '../pages/OthersPage.vue';
 import StoragePage from '../pages/StoragePage.vue';
 import ApiPage from '../pages/ApiPage.vue';
 import DatabasePage from '../pages/DatabasePage.vue';
+import CapacitorPage from '../pages/CapacitorPage.vue';
+import CameraPage from '../pages/CameraPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -47,6 +49,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/database',
     name: 'Database',
     component: DatabasePage
+  },
+  {
+    path: '/capacitor',
+    name: 'Capacitor',
+    component: CapacitorPage
+  },
+  {
+    path: '/camera',
+    name: 'Camera',
+    component: CameraPage
   }
 ]
 
