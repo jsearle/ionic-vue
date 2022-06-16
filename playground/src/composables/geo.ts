@@ -20,7 +20,7 @@ export function useGeo(){
       enableHighAccuracy: true,
       timeout: 1000,
     }
-    watcherId = Geolocation.watchPosition(watchPositionOptions, update)
+    watcherId = await Geolocation.watchPosition(watchPositionOptions, update)
   }
 
   const stopTracking = async () => {

@@ -10,16 +10,19 @@
     <ion-content>
       <ion-list>
         <ion-item>
-          <ion-label>Latitud: {{ (geo.locationData.pos)?geo.locationData.pos.coords.latitude : ''  }}</ion-label>
+          <ion-label>Latitud: {{ (geo.locationData.pos && geo.locationData.pos.coords)?geo.locationData.pos.coords.latitude : ''  }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Longitud: {{ (geo.locationData.pos)?geo.locationData.pos.coords.longitude : ''  }}</ion-label>
+          <ion-label>Longitud: {{ (geo.locationData.pos && geo.locationData.pos.coords)?geo.locationData.pos.coords.longitude : ''  }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Rumbo: {{ (geo.locationData.pos)?geo.locationData.pos.coords.heading : ''  }}</ion-label>
+          <ion-label>Rumbo: {{ (geo.locationData.pos && geo.locationData.pos.coords)?geo.locationData.pos.coords.heading : ''  }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Altitud: {{ (geo.locationData.pos)?geo.locationData.pos.coords.altitude : ''  }}</ion-label>
+          <ion-label>Altitud: {{ (geo.locationData.pos && geo.locationData.pos.coords)?geo.locationData.pos.coords.altitude : ''  }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Precisión: {{ (geo.locationData.pos && geo.locationData.pos.coords)?geo.locationData.pos.coords.accuracy : ''  }}</ion-label>
         </ion-item>
         <ion-item>
           <ion-button @click="geo.getPosition">Obtener posición</ion-button>
@@ -31,7 +34,11 @@
           <ion-button @click="geo.stopTracking">Detener seguimiento</ion-button>
         </ion-item>
       </ion-list>
-    </ion-content>
+      <ion-card class="center-img" v-if="geo.locationData.pos && geo.locationData.pos.coords">
+        <img src="../assets/aguja.png" :style="{transform: `rotate(${geo.locationData.pos.coords.heading}deg)`}" alt=""/>
+      </ion-card>
+      </ion-content>
+
   </ion-page>
 </template>
 
@@ -47,7 +54,8 @@ import {
   IonTitle,
   IonButtons,
   IonMenuButton,
-  IonButton
+  IonButton,
+  IonCard
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Capacitor } from "@capacitor/core";
@@ -66,7 +74,8 @@ export default defineComponent({
     IonTitle,
     IonButtons,
     IonMenuButton,
-    IonButton
+    IonButton,
+    IonCard
   },
   setup() {
     const platform = Capacitor.getPlatform();
@@ -80,3 +89,11 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.center-img{
+  text-align: center;
+}
+.center-img img{
+  transition: 1s;
+}
+</style>
