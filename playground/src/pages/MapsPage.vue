@@ -74,7 +74,7 @@ export default defineComponent({
     },
     goToLeganes(){
       this.mapComp.mapCenter.coords = {lat: 40.31, lng: -3.75};
-      this.mapComp.mapCenter.zoom = 10;
+      this.mapComp.mapCenter.zoom = 13;
     }
   },
   setup() {

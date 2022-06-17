@@ -4,7 +4,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 
 export function useMaps(){
   let google:any, map:any;
-  const mapCenter = reactive({coords: {lat: 40.352784, lng: -3.70061}, zoom: 15});
+  const mapCenter = reactive({coords: {lat: 40.352784, lng: -3.70061}, zoom: 12});
   const isLoaded = ref(false)
   const markers = reactive([] as any[]);
 
@@ -28,6 +28,9 @@ export function useMaps(){
   const setCenter = (coords:any, zoom:number)=>{
     if (google == undefined) return;
     map.panTo({lat:coords.lat, lng:coords.lng})
+    setTimeout(()=>{
+      map.setZoom(zoom);
+    }, 1000)
   }
 
   const createMap = (element:any, center:any, zoom:number) =>{
