@@ -36,8 +36,9 @@ export function useNotifications(){
     }
   
     await PushNotifications.register();
-  }
 
+    await PushNotifications.removeAllDeliveredNotifications()
+  }
 
 
   const getDeliveredNotifications = async () => {
