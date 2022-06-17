@@ -34,3 +34,6 @@ project(':capacitor-status-bar').projectDir = new File('../node_modules/@capacit
 
 include ':capacitor-storage'
 project(':capacitor-storage').projectDir = new File('../node_modules/@capacitor/storage/android')
+
+include ':sensores'
+project(':sensores').projectDir = new File('../../plugins/sensores/android')

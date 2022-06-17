@@ -98,7 +98,8 @@ import {
   repeat,
   notifications,
   map,
-  locate
+  locate,
+  barChart
 } from "ionicons/icons";
 import { useStorage } from "./composables/storage";
 import { useSQLite } from "vue-sqlite-hook";
@@ -204,6 +205,12 @@ export default defineComponent({
         url: "/notifications",
         iosIcon: notifications,
         mdIcon: notifications,
+      },
+      {
+        title: "Capa Nativa",
+        url: "/native",
+        iosIcon: barChart,
+        mdIcon: barChart,
       },
     ];
     const labels = ["Uno", "Dos", "Tres"];

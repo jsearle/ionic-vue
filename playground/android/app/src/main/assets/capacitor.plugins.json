@@ -42,5 +42,9 @@
 	{
 		"pkg": "@capacitor/storage",
 		"classpath": "com.capacitorjs.plugins.storage.StoragePlugin"
+	},
+	{
+		"pkg": "sensores",
+		"classpath": "es.fullcircle.plugins.sensores.SensoresPlugin"
 	}
 ]

@@ -13,6 +13,7 @@ import GeolocationPage from '../pages/GeolocationPage.vue';
 import MotionPage from '../pages/MotionPage.vue';
 import MapsPage from '../pages/MapsPage.vue';
 import NotificationsPage from '../pages/NotificationsPage.vue';
+import NativePage from '../pages/NativePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -83,6 +84,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/notifications',
     name: 'NotificationsPage',
     component: NotificationsPage
+  },
+  {
+    path: '/native',
+    name: 'NativePage',
+    component: NativePage
   },
   
   
