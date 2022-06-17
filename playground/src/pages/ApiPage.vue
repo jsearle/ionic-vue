@@ -24,7 +24,6 @@
             </ion-label>
           </ion-item>
         </transition-group>
-
       </ion-list>
       <ion-card>
         <ion-card-content>
