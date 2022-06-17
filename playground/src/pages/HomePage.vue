@@ -1,13 +1,6 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Home</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <HeaderComponent title="Home" mainColor="primary" type="menu" />
 
     <ion-content>
       <div id="container">
@@ -204,10 +197,7 @@
 <script lang="ts">
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonButton,
   IonGrid,
   IonRow,
@@ -225,20 +215,16 @@ import {
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
-  IonButtons,
-  IonMenuButton
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
+import HeaderComponent from '../components/HeaderComponent.vue'
 
 export default defineComponent({
   name: "HomePage",
   components: {
     IonContent,
-    IonHeader,
     IonPage,
-    IonTitle,
-    IonToolbar,
     IonButton,
     IonGrid,
     IonRow,
@@ -256,8 +242,7 @@ export default defineComponent({
     IonItemSliding,
     IonItemOptions,
     IonItemOption,
-    IonButtons,
-    IonMenuButton
+    HeaderComponent
   },
   data() {
     return {

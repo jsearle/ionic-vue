@@ -1,19 +1,9 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start"><ion-back-button default-href="/home"></ion-back-button></ion-buttons>
-        <ion-title>Tab 2</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <HeaderComponent title="Elementos visuales" mainColor="primary" type="back" />
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 2</ion-title>
-        </ion-toolbar>
-      </ion-header>
       <ion-list>
-        <ion-item>
+        <ion-item> 
           <ion-avatar slot="start">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Fruit_Stall_in_Barcelona_Market.jpg/360px-Fruit_Stall_in_Barcelona_Market.jpg"
@@ -22,7 +12,7 @@
           </ion-avatar>
           <ion-label>Nombre </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item class="custom-item">
           <ion-thumbnail slot="start">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Fruit_Stall_in_Barcelona_Market.jpg/360px-Fruit_Stall_in_Barcelona_Market.jpg"
@@ -54,7 +44,7 @@
         <ion-item>
           <ion-progress-bar :value="0.4" :buffer="0.8"></ion-progress-bar>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-progress-bar :value="0.9" color="danger"></ion-progress-bar>
         </ion-item>
         <ion-item>
@@ -85,7 +75,15 @@
           </ion-item>
         </ion-content>
       </ion-modal>
-
+      
+      <ion-button @click="visible = !visible">Cambiar</ion-button>
+      <transition name="card">
+        <ion-card class="ion-padding" v-if="visible">
+          <div class="caja">
+            Hola mundo
+          </div>
+        </ion-card>
+      </transition>
 
     </ion-content>
   </ion-page>
@@ -95,9 +93,6 @@
 import { defineComponent } from "vue";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   IonList,
   IonItem,
@@ -109,17 +104,17 @@ import {
   IonLoading,
   IonProgressBar,
   IonSpinner,
+  IonModal,
   IonButtons,
-  IonBackButton,
-  IonModal
+  IonHeader,
+  IonToolbar,
+  IonCard
 } from "@ionic/vue";
+import HeaderComponent from '../components/HeaderComponent.vue'
 
 export default defineComponent({
-  name: "Tab2Page",
+  name: "VisualesPage",
   components: {
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonPage,
     IonList,
@@ -132,14 +127,18 @@ export default defineComponent({
     IonLoading,
     IonProgressBar,
     IonSpinner,
+    IonModal,
+    HeaderComponent,
     IonButtons,
-    IonBackButton,
-    IonModal
+    IonHeader,
+    IonToolbar,
+    IonCard
   },
   data() {
     return {
       cargando: false,
-      modalAbierta: false
+      modalAbierta: false,
+      visible: true
     };
   },
   methods: {
@@ -154,7 +153,47 @@ export default defineComponent({
     },
     cerrarModal(){
       this.modalAbierta = false;
+    },
+    borrar(){
+      this.visible = false
     }
   },
 });
 </script>
+<style scoped>
+.caja{
+  height: 200px;
+  background: var(--ion-color-primary);
+  padding: 20px;
+  color: var(--ion-color-light);
+}
+.custom-item{
+  --background: #99aaaa;
+  --padding-start: 4em;
+}
+
+.card-enter-from{
+  opacity: 0;
+  transform: translate(100px, 0);
+}
+.card-enter-to{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.card-enter-active{
+  transition:1.4s ease-in-out;
+}
+
+.card-leave-from{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.card-leave-to{
+  opacity: 0;
+  transform: translate(-100px,0);
+}
+.card-leave-active{
+  transition:0.4s ease-in-out;
+}
+
+</style>

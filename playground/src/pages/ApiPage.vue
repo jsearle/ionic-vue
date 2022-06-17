@@ -13,15 +13,18 @@
         <ion-item>
           <ion-button @click="getUsers">Llamar a la API</ion-button>
         </ion-item>
-        <ion-item v-for="user in users" :key="user.id">
-          <ion-avatar slot="start">
-            <ion-img :src="user.avatar" />
-          </ion-avatar>
-          <ion-label>
-            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <h3>{{ user.email }}</h3>
-          </ion-label>
-        </ion-item>
+        <transition-group name="user">
+          <ion-item v-for="(user, index) in users" :key="user.id" :style="{transitionDelay: (index/7)+'s'}">
+            <ion-avatar slot="start">
+              <ion-img :src="user.avatar" />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+              <h3>{{ user.email }}</h3>
+            </ion-label>
+          </ion-item>
+        </transition-group>
+
       </ion-list>
       <ion-card>
         <ion-card-content>
@@ -152,3 +155,29 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+
+.user-enter-from{
+  opacity: 0;
+  transform: translate(100px, 0);
+}
+.user-enter-to{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.user-enter-active{
+  transition:0.4s ease-in-out;
+}
+
+.user-leave-from{
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.user-leave-to{
+  opacity: 0;
+  transform: translate(-100px,0);
+}
+.user-leave-active{
+  transition:0.4s ease-in-out;
+}
+</style>
