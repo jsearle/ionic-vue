@@ -25,6 +25,9 @@
           <ion-label>Precisión: {{ (geo.locationData.pos && geo.locationData.pos.coords)?geo.locationData.pos.coords.accuracy : ''  }}</ion-label>
         </ion-item>
         <ion-item>
+          <ion-label>isInGeofence: {{ geo.isInGeofence }} </ion-label>
+        </ion-item>
+        <ion-item>
           <ion-button @click="geo.getPosition">Obtener posición</ion-button>
         </ion-item>
         <ion-item>
