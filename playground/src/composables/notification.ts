@@ -17,6 +17,8 @@ export function useNotifications(){
   
     await PushNotifications.addListener('pushNotificationReceived', notification => {
       console.log('Push notification received: ', notification);
+      if (notification && notification.data && notification.data.a )
+      alert(notification.data.a)
     });
   
     await PushNotifications.addListener('pushNotificationActionPerformed', notification => {
