@@ -1,9 +1,10 @@
 import { Geolocation, Position } from '@capacitor/geolocation'
 import { reactive } from 'vue'
 
+// locationdata está en el scope de useGeo como dato global
+const locationData = reactive({ pos:{} as any })
 export function useGeo(){
   let watcherId:any
-  const locationData = reactive({ pos:{} as any })
 
   const getPosition = async () => {
     const position = await Geolocation.getCurrentPosition()

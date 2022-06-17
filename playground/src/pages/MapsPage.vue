@@ -43,6 +43,7 @@ import {
 import { defineComponent } from "vue";
 import { Capacitor } from "@capacitor/core";
 import { useMaps } from "../composables/map";
+import { useGeo } from "../composables/geo";
 
 export default defineComponent({
   name: "MapsPage",
@@ -65,7 +66,12 @@ export default defineComponent({
   watch:{
     'mapComp.isLoaded.value'(newVal: any, oldVal: any){
       console.log("Creando mapa...");
-      this.mapComp.createMap( this.$refs.reactiveMap, {lat: 40.36, lng: -3.70}, 12 )
+      if (newVal == true){
+        this.mapComp.createMap( this.$refs.reactiveMap, {lat: 40.36, lng: -3.70}, 12 )
+      }
+    },
+    'geo.locationData.pos.coords'(newVal: any, oldVal: any){
+        this.createMyMarker()
     }
   },
   methods:{
@@ -75,16 +81,34 @@ export default defineComponent({
     goToLeganes(){
       this.mapComp.mapCenter.coords = {lat: 40.31, lng: -3.75};
       this.mapComp.mapCenter.zoom = 13;
+    },
+    setMyPos(position:any){
+      this.mapComp.myPosition(position)
+    },
+    createMyMarker(){
+      if (this.mapComp.isLoaded){
+        const newVal = this.geo.locationData.pos.coords
+        const newPos = {lat: newVal.latitude, lng:newVal.longitude}
+        this.setMyPos(newPos)
+        this.mapComp.mapCenter.coords = newPos;
+      } else {
+        setTimeout(this.createMyMarker, 1000)
+      }
     }
+  },
+  mounted(){
+    this.geo.getPosition()
   },
   setup() {
     const platform = Capacitor.getPlatform();
     const native = Capacitor.isNativePlatform();
     const mapComp = useMaps()
+    const geo = useGeo();
     return {
       platform,
       native,
-      mapComp
+      mapComp,
+      geo
     };
   },
 });
