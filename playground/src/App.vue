@@ -95,7 +95,10 @@ import {
   warningOutline,
   warningSharp,
   camera,
-  repeat
+  repeat,
+  notifications,
+  map,
+  locate
 } from "ionicons/icons";
 import { useStorage } from "./composables/storage";
 import { useSQLite } from "vue-sqlite-hook";
@@ -181,8 +184,8 @@ export default defineComponent({
       {
         title: "Geolocalicación",
         url: "/geo",
-        iosIcon: globe,
-        mdIcon: globe,
+        iosIcon: locate,
+        mdIcon: locate,
       },
       {
         title: "Motion API",
@@ -193,8 +196,14 @@ export default defineComponent({
       {
         title: "Mapas",
         url: "/maps",
-        iosIcon: globe,
-        mdIcon: globe,
+        iosIcon: map,
+        mdIcon: map,
+      },
+      {
+        title: "Notificaciones",
+        url: "/notifications",
+        iosIcon: notifications,
+        mdIcon: notifications,
       },
     ];
     const labels = ["Uno", "Dos", "Tres"];
