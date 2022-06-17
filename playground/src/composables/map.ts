@@ -1,4 +1,4 @@
-import { onMounted, reactive, ref }  from 'vue'
+import { onMounted, reactive, ref, watch }  from 'vue'
 import { Loader } from '@googlemaps/js-api-loader';
 
 
@@ -25,13 +25,18 @@ export function useMaps(){
     const newMarker = new google.maps.Marker(markerOptions)
     markers.push(newMarker);
   }
+  const setCenter = (coords:any, zoom:number)=>{
+    if (google == undefined) return;
+    map.panTo({lat:coords.lat, lng:coords.lng})
+  }
 
-  const createMap = (element:any) =>{
-    console.log(element, google, mapCenter.coords)
+  const createMap = (element:any, center:any, zoom:number) =>{
+    //console.log(element, google, mapCenter.coords)
+    mapCenter.coords = center;
     if (google == undefined) return;
     const opts:any = {
-      center: mapCenter.coords,
-      zoom: mapCenter.zoom,
+      center: center,
+      zoom: zoom,
       styles: [{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"},{"color":"#f49f53"}]},{"featureType":"all","elementType":"labels.text","stylers":[{"visibility":"simplified"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f9ddc5"},{"lightness":-7}]},{"featureType":"poi.business","elementType":"all","stylers":[{"color":"#645c20"},{"lightness":38}]},{"featureType":"poi.government","elementType":"all","stylers":[{"color":"#9e5916"},{"lightness":46}]},{"featureType":"poi.medical","elementType":"geometry.fill","stylers":[{"color":"#813033"},{"lightness":38},{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"color":"#645c20"},{"lightness":39}]},{"featureType":"poi.school","elementType":"all","stylers":[{"color":"#a95521"},{"lightness":35}]},{"featureType":"poi.sports_complex","elementType":"all","stylers":[{"color":"#9e5916"},{"lightness":32}]},{"featureType":"road","elementType":"all","stylers":[{"color":"#813033"},{"lightness":43}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"#f19f53"},{"weight":1.3},{"visibility":"on"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#f19f53"},{"lightness":-10}]},{"featureType":"transit","elementType":"all","stylers":[{"lightness":38}]},{"featureType":"transit.line","elementType":"all","stylers":[{"color":"#813033"},{"lightness":22}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#1994bf"},{"saturation":-69},{"gamma":0.99},{"lightness":43}]}],
       maxZoom: 20,
       minZoom: 0,
@@ -42,7 +47,7 @@ export function useMaps(){
       keyboardShortcuts: true,
       scrollwheel: true,
     };
-    console.log(opts)
+    //console.log(opts)
     map = new google.maps.Map(element, opts);
     console.log(map)
   }
@@ -55,14 +60,19 @@ export function useMaps(){
     });
     google = await loader.load()
     isLoaded.value = true;
+
+    watch( mapCenter , (newVal:any, oldVal:any)=>{
+      setCenter(newVal.coords, newVal.zoom)
+    })
   })
+
 
   return {
     createMap,
     createMarker,
     mapCenter,
     markers,
-    isLoaded
+    isLoaded,
   }
 
 }

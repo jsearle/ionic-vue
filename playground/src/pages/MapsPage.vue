@@ -8,14 +8,17 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-card class="ion-padding" v-show="map.isLoaded.value">
+      <ion-card class="ion-padding" v-show="mapComp.isLoaded.value">
         <h2>Mapa reactivo</h2>
+        <ion-button @click="() => createMarker({lat: 40.352784 + Math.random()*0.05, lng: -3.70061 + Math.random()*0.05})">Crear marcador</ion-button>
+        <ion-button @click="() => goToLeganes()">Leganés</ion-button>
         <div ref="reactiveMap" id="map"></div>
       </ion-card>
       <ion-card class="ion-padding">
         <h2>Mapa incrustado por iFrame</h2>
         <iframe src="../assets/map.html" width="100%" height="300px" style="border:none;"></iframe>
       </ion-card>
+      {{mapComp.map}}
     </ion-content>
   </ion-page>
 </template>
@@ -33,7 +36,9 @@ import {
   IonToolbar,
   IonTitle,
   IonButtons,
-  IonMenuButton
+  IonMenuButton,
+  IonButton,
+  IonCard
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { Capacitor } from "@capacitor/core";
@@ -48,25 +53,38 @@ export default defineComponent({
     IonToolbar,
     IonTitle,
     IonButtons,
-    IonMenuButton
+    IonMenuButton,
+    IonButton,
+    IonCard
   },
-  mounted(){
-    console.log("Creando mapa...");
+  data(){
+    return {
+      markers: [] as any[]
+    }
   },
   watch:{
-    'map.isLoaded.value'(newVal: any, oldVal: any){
-      console.log("Mapa cargado!", newVal);
-      this.map.createMap( this.$refs.reactiveMap )
+    'mapComp.isLoaded.value'(newVal: any, oldVal: any){
+      console.log("Creando mapa...");
+      this.mapComp.createMap( this.$refs.reactiveMap, {lat: 40.36, lng: -3.70}, 12 )
+    }
+  },
+  methods:{
+    createMarker(position:any){
+      this.mapComp.createMarker(position)
+    },
+    goToLeganes(){
+      this.mapComp.mapCenter.coords = {lat: 40.31, lng: -3.75};
+      this.mapComp.mapCenter.zoom = 10;
     }
   },
   setup() {
     const platform = Capacitor.getPlatform();
     const native = Capacitor.isNativePlatform();
-    const map = useMaps()
+    const mapComp = useMaps()
     return {
       platform,
       native,
-      map
+      mapComp
     };
   },
 });
